@@ -81,8 +81,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)changeToolBarStatus{
     
-    self.toolBar.leftItem.enabled = self.selectedAssetArray.count > 0;
-    self.toolBar.rightItem.enabled = self.selectedAssetArray.count > 0;
     [self.toolBar updateStatus:(NSInteger)self.selectedAssetArray.count];
 }
 

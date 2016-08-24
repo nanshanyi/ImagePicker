@@ -53,8 +53,8 @@
 - (UIButton*)selectButton{
     if (!_selectButton) {
         _selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _selectButton.frame = CGRectMake(self.bounds.size.width - 40, 0, 40, 40);
-        _selectButton.contentMode = UIViewContentModeTopRight;
+        _selectButton.frame = CGRectMake(self.bounds.size.width - 30, 0, 30, 30);
+//        _selectButton.contentMode = UIViewContentModeTopRight;
         [_selectButton setImage:[UIImage imageNamed:@"photo_def_photoPickerVc"] forState:UIControlStateNormal];
         [_selectButton setImage:[UIImage imageNamed:@"photo_sel_photoPickerVc"] forState:UIControlStateSelected];
         [_selectButton addTarget:self action:@selector(secetBtnClick) forControlEvents:UIControlEventTouchUpInside];
