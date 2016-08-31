@@ -9,9 +9,10 @@
 #import "LImagePickerTableViewController.h"
 #import "LimagePickerCollectionViewController.h"
 #import "LimagepickerTableViewCell.h"
-@interface LImagePickerTableViewController ()
+@interface LImagePickerTableViewController ()<LimagePickerCollectionViewDelegate>
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, strong) NSMutableArray *assetGroupArray;
+//@property (nonatomic, strong) NSArray *selectImages;
 @end
 
 @implementation LImagePickerTableViewController
@@ -50,6 +51,15 @@
 
 - (void)rightItemClick{
     [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+#pragma mark - LimagePickerCollectionViewDelegate
+
+
+- (void)didFinishPickingImages:(NSArray *)images{
+    if ([self.delegate respondsToSelector:@selector(didFinishPickingImage:)]) {
+        [self.delegate didFinishPickingImage:images];
+    }
 }
 
 #pragma mark - UITableView Datasource
@@ -77,7 +87,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LimagePickerCollectionViewController *pickerCollectionVC = [[LimagePickerCollectionViewController alloc]init];
     pickerCollectionVC.assetsGroup = self.assetGroupArray[indexPath.row];
-    
+    pickerCollectionVC.delegate = self;
     [self.navigationController pushViewController:pickerCollectionVC animated:YES];
 }
 

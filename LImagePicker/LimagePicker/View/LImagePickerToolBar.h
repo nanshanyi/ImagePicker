@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, ItemType) {
-    ItemTypeLeft,
-    ItemTypeRight
+    ItemTypePreview,
+    ItemTypeComplate
 };
 
 @protocol LImagePickerToolBarDelegate <NSObject>

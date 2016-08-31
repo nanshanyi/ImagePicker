@@ -75,13 +75,13 @@
 - (void)leftItemClick{
     NSLog(@"预览点击");
     if ([self.ldelegate respondsToSelector:@selector(itemClickWithItemType:)]) {
-        [self.ldelegate itemClickWithItemType:ItemTypeLeft];
+        [self.ldelegate itemClickWithItemType:ItemTypePreview];
     }
 }
 - (void)rightItemClick{
     NSLog(@"完成点击");
     if ([self.ldelegate respondsToSelector:@selector(itemClickWithItemType:)]) {
-        [self.ldelegate itemClickWithItemType:ItemTypeRight];
+        [self.ldelegate itemClickWithItemType:ItemTypeComplate];
     }
 }
 

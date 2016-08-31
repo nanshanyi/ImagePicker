@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+
+@protocol LimagePickerCollectionViewDelegate <NSObject>
+
+- (void)didFinishPickingImages:(NSArray *)images;
+
+@end
+
 @interface LimagePickerCollectionViewController : UIViewController
+
+@property (nonatomic, weak) id <LimagePickerCollectionViewDelegate> delegate;
 
 @property (nonatomic, strong) ALAssetsGroup *assetsGroup;
 

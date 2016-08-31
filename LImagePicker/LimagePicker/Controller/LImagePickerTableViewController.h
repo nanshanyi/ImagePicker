@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface LImagePickerTableViewController : UITableViewController
+@protocol LImagePickerTableViewDelegate <NSObject>
 
+- (void)didFinishPickingImage:(NSArray *)images;
+
+@end
+
+@interface LImagePickerTableViewController : UITableViewController
+@property (weak, nonatomic) id <LImagePickerTableViewDelegate> delegate;
 @end

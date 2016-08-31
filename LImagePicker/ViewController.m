@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "LImagePickerViewController.h"
-@interface ViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface ViewController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LImagePickerViewDelegate>
 @property (nonatomic, strong) UIImageView  *imageView;
 @end
 
@@ -72,6 +72,9 @@
     NSLog(@"%@",editingInfo);
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+- (void)limagePickerController:(LImagePickerViewController *)picker didFinishPickingImage:(NSArray *)images{
+    NSLog(@"%@",images);
+}
 #pragma mark - 跳转
 - (void)presentToCamera{
     // 跳转到相机页面
@@ -87,6 +90,7 @@
 //    
 //    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     LImagePickerViewController *picker = [[LImagePickerViewController alloc]init];
+    picker.deleate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }
 

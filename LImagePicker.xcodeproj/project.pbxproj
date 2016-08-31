@@ -29,6 +29,8 @@
 		ABEC6E151D6A9D8E0064BEDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEC6E131D6A9D8E0064BEDE /* Main.storyboard */; };
 		ABEC6E171D6A9D8E0064BEDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEC6E161D6A9D8E0064BEDE /* Assets.xcassets */; };
 		ABEC6E1A1D6A9D8E0064BEDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEC6E181D6A9D8E0064BEDE /* LaunchScreen.storyboard */; };
+		FB4ED6701D73E7EF0090E1E5 /* LImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED66F1D73E7EF0090E1E5 /* LImageBrowserViewController.m */; };
+		FB4ED6731D73E81C0090E1E5 /* LImageBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4ED6721D73E81C0090E1E5 /* LImageBrowserCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		ABEC6E161D6A9D8E0064BEDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABEC6E191D6A9D8E0064BEDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABEC6E1B1D6A9D8E0064BEDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB4ED66E1D73E7EF0090E1E5 /* LImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LImageBrowserViewController.h; sourceTree = "<group>"; };
+		FB4ED66F1D73E7EF0090E1E5 /* LImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LImageBrowserViewController.m; sourceTree = "<group>"; };
+		FB4ED6711D73E81C0090E1E5 /* LImageBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LImageBrowserCell.h; sourceTree = "<group>"; };
+		FB4ED6721D73E81C0090E1E5 /* LImageBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LImageBrowserCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,8 @@
 				AB2EEEB41D6C3979006A781E /* LImagePickerTableViewController.m */,
 				AB2EEEB51D6C3979006A781E /* LImagePickerViewController.h */,
 				AB2EEEB61D6C3979006A781E /* LImagePickerViewController.m */,
+				FB4ED66E1D73E7EF0090E1E5 /* LImageBrowserViewController.h */,
+				FB4ED66F1D73E7EF0090E1E5 /* LImageBrowserViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,6 +107,8 @@
 				AB2EEEBB1D6C3979006A781E /* LimagepickerTableViewCell.m */,
 				AB2EEEC11D6C3A81006A781E /* LImagePickerToolBar.h */,
 				AB2EEEC21D6C3A81006A781E /* LImagePickerToolBar.m */,
+				FB4ED6711D73E81C0090E1E5 /* LImageBrowserCell.h */,
+				FB4ED6721D73E81C0090E1E5 /* LImageBrowserCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,10 +267,12 @@
 				ABEC6E121D6A9D8E0064BEDE /* ViewController.m in Sources */,
 				AB2EEEBF1D6C3979006A781E /* LimagePickerCollectionViewCell.m in Sources */,
 				AB2EEEBC1D6C3979006A781E /* LimagePickerCollectionViewController.m in Sources */,
+				FB4ED6701D73E7EF0090E1E5 /* LImageBrowserViewController.m in Sources */,
 				AB2EEEC31D6C3A81006A781E /* LImagePickerToolBar.m in Sources */,
 				ABEC6E0F1D6A9D8E0064BEDE /* AppDelegate.m in Sources */,
 				ABEC6E0C1D6A9D8E0064BEDE /* main.m in Sources */,
 				AB2EEEC01D6C3979006A781E /* LimagepickerTableViewCell.m in Sources */,
+				FB4ED6731D73E81C0090E1E5 /* LImageBrowserCell.m in Sources */,
 				AB2EEEBE1D6C3979006A781E /* LImagePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

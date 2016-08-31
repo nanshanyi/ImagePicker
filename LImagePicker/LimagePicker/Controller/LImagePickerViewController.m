@@ -8,7 +8,7 @@
 
 #import "LImagePickerViewController.h"
 #import "LImagePickerTableViewController.h"
-@interface LImagePickerViewController ()
+@interface LImagePickerViewController ()<LImagePickerTableViewDelegate>
 
 @end
 
@@ -23,7 +23,7 @@
 
 - (LImagePickerViewController*)setupRoot{
     LImagePickerTableViewController *pickerTableViewVC = [[LImagePickerTableViewController alloc]init];
-//    self.viewControllers = @[pickerTableViewVC];
+    pickerTableViewVC.delegate = self;
     return [self initWithRootViewController:pickerTableViewVC];
 }
 
@@ -32,10 +32,11 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - LImagePickerTableViewDelegate
+
+- (void)didFinishPickingImage:(NSArray *)images{
+    if ([self.deleate respondsToSelector:@selector(limagePickerController:didFinishPickingImage:)]) {
+        [self.deleate limagePickerController:self didFinishPickingImage:images];
+    }
 }
-
-
 @end

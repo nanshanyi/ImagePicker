@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class LImagePickerViewController;
+
 @protocol LImagePickerViewDelegate <NSObject>
 
-- (void)limagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(NSArray *)images;
+- (void)limagePickerController:(LImagePickerViewController *)picker didFinishPickingImage:(NSArray *)images;
 
 @end
 
@@ -19,3 +21,4 @@
 @property (weak, nonatomic) id <LImagePickerViewDelegate> deleate;
 
 @end
+

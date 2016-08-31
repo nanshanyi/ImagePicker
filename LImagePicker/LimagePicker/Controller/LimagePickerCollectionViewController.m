@@ -9,13 +9,19 @@
 #import "LimagePickerCollectionViewController.h"
 #import "LimagePickerCollectionViewCell.h"
 #import "LImagePickerToolBar.h"
-@interface LimagePickerCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+#import "LImageBrowserViewController.h"
+
+@interface LimagePickerCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,LImagePickerToolBarDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *assetArray;
 
 @property (nonatomic, strong) NSMutableArray *selectedAssetArray;
+
+@property (nonatomic, strong) NSMutableArray *selectImageArray;
+
+@property (nonatomic, strong) NSMutableArray *allImageArray;
 
 @property (nonatomic, strong) LImagePickerToolBar *toolBar;
 
@@ -33,6 +39,10 @@ static NSString * const reuseIdentifier = @"Cell";
     [self loadData];
 
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 - (void)setupUI{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = [_assetsGroup valueForProperty:ALAssetsGroupPropertyName];
@@ -44,19 +54,24 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 - (void)loadData{
     _assetArray = [NSMutableArray array];
+    _selectImageArray = [NSMutableArray array];
     _selectedAssetArray = [NSMutableArray array];
+    _allImageArray = [NSMutableArray array];
     [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if(result) {
             [self.assetArray addObject:result];
+            [self.allImageArray addObject:[UIImage imageWithCGImage:result.aspectRatioThumbnail]];
         }
     }];
     
     [self.collectionView reloadData];
 }
 - (void)rightItemClick{
+
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
-#pragma mark <UICollectionViewDataSource>
+#pragma mark UICollectionViewDataSource
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -75,13 +90,40 @@ static NSString * const reuseIdentifier = @"Cell";
     };
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    LImageBrowserViewController *imageBrowser = [[LImageBrowserViewController alloc]init];
+    imageBrowser.images = self.allImageArray;
+    imageBrowser.selectIndex = indexPath.row;
+    [self.navigationController pushViewController:imageBrowser animated:YES];
+}
+
 - (BOOL)cellPhotoIsSelected:(ALAsset*)asset{
     return  [self.selectedAssetArray containsObject:asset];
 }
 
 - (void)changeToolBarStatus{
-    
+
     [self.toolBar updateStatus:(NSInteger)self.selectedAssetArray.count];
+}
+
+#pragma mark - LImagePickerToolBarDelegate
+- (void)itemClickWithItemType:(ItemType)itemType{
+    [_selectImageArray removeAllObjects];
+    [_selectedAssetArray enumerateObjectsUsingBlock:^(ALAsset *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIImage *image = [UIImage imageWithCGImage:obj.aspectRatioThumbnail];
+        [_selectImageArray addObject:image];
+    }];
+    if (itemType == ItemTypePreview) {
+        LImageBrowserViewController *browserViewController = [[LImageBrowserViewController alloc]init];
+        browserViewController.images = _selectImageArray;
+        browserViewController.selectIndex = 0;
+        [self.navigationController pushViewController:browserViewController animated:YES];
+    }else {
+        if ([self.delegate respondsToSelector:@selector(didFinishPickingImages:)]) {
+            [self.delegate didFinishPickingImages:_selectImageArray];
+        }
+    }
 }
 
 
@@ -104,6 +146,7 @@ static NSString * const reuseIdentifier = @"Cell";
 - (LImagePickerToolBar*)toolBar{
     if (!_toolBar) {
         _toolBar = [[LImagePickerToolBar alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 40)];
+        _toolBar.ldelegate = self;
     }
     return _toolBar;
 }
